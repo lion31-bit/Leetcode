@@ -5,29 +5,17 @@
 #         self.next = next
 class Solution(object):
     def removeNthFromEnd(self, head, n):
-        temp=head
-        count=0
-        prev=None
-        while temp.next is not None:
-            count+=1
-            temp=temp.next
-        if n == count+1:
-            new=head.next
-            return new
-        temp=head
-        length=count-n
-        pos=0
-        while pos<length:
-            temp=temp.next
-            pos+=1
-        temp.next=temp.next.next
+        slow=head
+        fast=head
+        for i in range(n):
+            fast=fast.next
+        if fast==None:
+            return head.next
+        while fast.next is not None:
+            slow=slow.next
+            fast=fast.next
+        slow.next=slow.next.next
         return head
-           
-        
 
-           
-
-            
-        
-     
+       
         
