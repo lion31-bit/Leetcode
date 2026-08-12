@@ -4,4 +4,5 @@ class Solution(object):
         for num in nums:
             ans=ans^num
         return ans
+    
         
