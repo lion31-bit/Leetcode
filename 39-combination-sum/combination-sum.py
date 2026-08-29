@@ -1,21 +1,19 @@
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        n=len(nums)
         result=[]
-        n=len(candidates)
-        def back(index,total,subset):
+        def back(index,total,sub):
             if total==target:
-                result.append(subset.copy())
+                result.append(sub.copy())
                 return
-            if total>target:
+            elif total>target or index>=n:
                 return
-            elif index>=n:
-                return
-            sun=total+candidates[index]
-            subset.append(candidates[index])
-            back(index,sun,subset)
-            sun=total
-            subset.pop()
-            back(index+1,sun,subset)
+            sub.append(nums[index])
+            sun=nums[index]+total
+            back(index,sun,sub)
+            e=sub.pop()
+            sun-=e
+            back(index+1,sun,sub)
         back(0,0,[])
         return result
 
