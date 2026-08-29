@@ -1,14 +1,14 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        result = []
-        n = len(nums)
-        def func(index, subset):
-            if index >= n:
-                result.append(subset.copy())
+        n=len(nums)
+        result=[]
+        def back(index,sub):
+            if index>=n:
+                result.append(sub.copy())
                 return
-            subset.append(nums[index])
-            func(index + 1, subset)
-            subset.pop()
-            func(index + 1, subset)
-        func(0, [])
+            sub.append(nums[index])
+            back(index+1,sub)
+            sub.pop()
+            back(index+1,sub)
+        back(0,[])
         return result
